@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ASPMedAPI.Models.Classes;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -24,6 +25,9 @@ namespace ASPMedAPI.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Post> Post { get; set; } 
+        public DbSet<Image> Images { get; set;}
+
 
         public static ApplicationDbContext Create()
         {
