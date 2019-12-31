@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ASPMedAPI.Models.Classes.Image>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div>
+        <h2>Index</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        @*<table class="table">*@
+        @*<dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </dd>*@
+
+
+
+            @*<dd>
+                <img src="@Url.Content(Model.ImagePath)" width="250" height="250" />
+            </dd>*@
+        @*</dl>*@
+    </div>
+@*<p>
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to Details</a>
+</p>*@
+
+
+@*@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Image_ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Image_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Image_ID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
