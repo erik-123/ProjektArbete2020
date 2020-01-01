@@ -1,0 +1,59 @@
+﻿@model ASPMedAPI.Models.Classes.Profil
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Förnamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Förnamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Efternamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Efternamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Födelsedatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Födelsedatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

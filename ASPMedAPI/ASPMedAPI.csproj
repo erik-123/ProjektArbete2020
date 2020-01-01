@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\ProfilsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,6 +260,11 @@
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Edit.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Views\Profils\Create.cshtml" />
+    <Content Include="Views\Profils\Delete.cshtml" />
+    <Content Include="Views\Profils\Details.cshtml" />
+    <Content Include="Views\Profils\Edit.cshtml" />
+    <Content Include="Views\Profils\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
