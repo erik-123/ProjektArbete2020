@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ASPMedAPI.Models.Classes.Profil>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Search", "Profils", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <h3>Search</h3>
+        <div class="form-group">
+            <label for="fname">Firstname</label>
+            @Html.TextBox("Förnamn")
+        </div>
+        <div class="form-group">
+            <label for="lname">Lastname</label>
+            @Html.TextBox("Efternamn")
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+}
+<hr />
+
+<table class="table">
+    <tr>
+        <th>Förnamn</th>
+        <th>Efternamn </th>
+           <th></th>
+    </tr>
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Förnamn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Efternamn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Födelsedatum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfileURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bio)
+                </th>
+                <th></th>
+            </tr>*@
+    @if (Model.ToList().Any())
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Förnamn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Efternamn)
+                </td>
+
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                </td>*@
+            </tr>
+        }
+    }
+    else
+    {
+        <!-- Visar även om man inte får några träffar. -->
+        <tr>
+            <td>No results.Try again.</td>
+        </tr>
+    }
+    </table>

@@ -269,6 +269,7 @@
     <Content Include="Views\Profils\Details.cshtml" />
     <Content Include="Views\Profils\Edit.cshtml" />
     <Content Include="Views\Profils\Index.cshtml" />
+    <Content Include="Views\Profils\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

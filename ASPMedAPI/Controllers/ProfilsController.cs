@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ASPMedAPI.Models;
 using ASPMedAPI.Models.Classes;
+using Microsoft.AspNet.Identity;
 
 namespace ASPMedAPI.Controllers
 {
@@ -138,6 +139,25 @@ namespace ASPMedAPI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        
+        
+        [HttpGet]
+        public ActionResult Search(string förnamn, string efternamn)
+        {
+            ViewBag.Message = "Search page.";
+            
+            var currentUserID = User.Identity.GetUserId();
+            var Profiles = new ApplicationDbContext().Profil.Where(
+                    (s =>
+                    (s.Förnamn.Contains(förnamn) || förnamn == null && !(s.Förnamn == "Förnamn")) &&
+                    (s.Efternamn.Contains(efternamn) || efternamn == null && !(s.Efternamn == "Efternamn"))
+                     &&
+                    !(s.UserID.Equals(currentUserID))));
+            return View(Profiles);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
