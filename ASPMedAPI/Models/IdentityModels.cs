@@ -28,6 +28,8 @@ namespace ASPMedAPI.Models
         public DbSet<Post> Post { get; set; } 
         public DbSet<Image> Images { get; set;}
 
+        public DbSet<Profil> Profil { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
