@@ -184,6 +184,10 @@
     <Compile Include="Migrations\202001011141139_ye.Designer.cs">
       <DependentUpon>202001011141139_ye.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001011837005_tss.cs" />
+    <Compile Include="Migrations\202001011837005_tss.Designer.cs">
+      <DependentUpon>202001011837005_tss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\Image.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001011141139_ye.resx">
       <DependentUpon>202001011141139_ye.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001011837005_tss.resx">
+      <DependentUpon>202001011837005_tss.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
