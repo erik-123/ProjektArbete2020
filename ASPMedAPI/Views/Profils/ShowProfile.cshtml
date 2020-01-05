@@ -1,13 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity;
 @model ASPMedAPI.Models.Classes.ProfilViewModel
 @{
-    ViewBag.Title = "ShowProfile";
+    ViewBag.Title = Model.Förnamn + " " + Model.Efternamn;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShowProfile</h2>
-
-}
 <h2>@Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)</h2>
 <div class="card" style="width: 18rem;">
     <img src="@Model.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)">
@@ -30,7 +27,15 @@
 <div class="list-group">
 
     <div>
-        <form id="addBloggPost">
+        <ul id="bloggpostscontents">
+            <li>
+                @*<label>Loading...</label>*@
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <form id="addbloggpost">
             <input type="text" id="MeddelandeText" name="MeddelandeText" />
             <input type="text" id="Mottagare" name="Mottagare" value="@Model.UserID" hidden="hidden" />
             <input type="text" id="Avsändare" name="Avsändare" value="@User.Identity.GetUserId()" hidden="hidden" />
@@ -42,43 +47,83 @@
 
 </div>
 
+
+
+
+@*function AddPost()
+        {
+
+        var Text = $('#Text').val();
+        var Sender = '@User.Identity.GetUserId()';
+        var Receiver = '@Model.UserID';
+        var newPost = {SenderID: Sender, ReceiverID: Receiver, Text: Text};
+            $.ajax({
+                type: 'POST',
+                url: '/api/UserPosts/',
+                data: JSON.stringify(newPost),
+                contentType:'application/json',
+                datatype: 'json',
+                success: function (data) {
+                    $('#Text').val('');
+                    location.reload();
+                }
+            })
+        };
+    </script>
+
+    <div class="container, left">
+        <h3>Test</h3>
+        <div class="form-group">
+            <label for="comment"></label>
+            <textarea class="form-control" rows="5" id="Text"></textarea>
+            <button class="btn btn-default" onclick="AddPost()"Test></button>
+        </div>
+    </div>
+    <ul class="list-group">
+        @foreach (var item in ViewBag.List)
+        {
+            <li class="list-group-item">@item[2] <b>@item[0]:</b> @item[1] </li>
+
+        }
+    </ul>*@
+
 @section scripts {
     <script>
-        
-        function read() {
-            $.getJSON("/api/BloggPost/list?userId=@Model.UserID")
-                .done(function (data)
-                {
-                    var contents = $("#BlogPostContent");
-                    contents.empty();
-                   
-                    data.forEach(function (item) {
-                        var li = $("<li> </li>");
-                        var div = $("<div></div>");
-                        var from = $("<h4></h4> ");
-                        from.text(item.FulltNamn);
-                        var SkickatDatum = $("<h4></h4> ");
-                        SkickatDatum.text(item.SkickatDatum);
-                        var MeddelandeText = $("<p></p> ");
-                        MeddelandeText.text(item.MeddelandeText);
-                        div.append(from);
-                        div.append(SkickatDatum);
-                        div.append(MeddelandeText);
-                        li.append(div);
-                        $("#BlogPostContent").append(li);
-                    });
-                });
-        };
-        
-        $('#addBloggPost').submit(function (ex, e2) {
-            ex.preventDefault();
 
-            var form = $(this);
-            var data = form.serialize();
-            $.post({ url: "/api/BloggPost/add" }, data)
-                
-                .then(read);
-            });
+    function read() {
+        $.getJSON("/api/bloggpost/list?userId=@Model.UserID")
+        .done(function (data)
+        {
+        var contents = $("#blogpostcontent");
+        contents.empty();
+
+        data.forEach(function (item) {
+        var li = $("<li> </li>");
+        var div = $("<div></div>");
+        var from = $("<h4></h4> ");
+        from.text(item.FulltNamn);
+        var SkickatDatum = $("<h4></h4> ");
+        SkickatDatum.text(item.SkickatDatum);
+        var MeddelandeText = $("<p></p> ");
+        MeddelandeText.text(item.MeddelandeText);
+        div.append(from);
+        div.append(SkickatDatum);
+        div.append(MeddelandeText);
+        li.append(div);
+        $("#blogpostcontent").append(li);
+        });
+        });
+        };
+
+        $('#addbloggpost').submit(function (ex, e2) {
+        ex.preventDefault();
+
+        var form = $(this);
+        var data = form.serialize();
+        $.post({ url: "/api/bloggpost/add" }, data)
+
+        .then(read);
+        });
 
         read();
     </script>

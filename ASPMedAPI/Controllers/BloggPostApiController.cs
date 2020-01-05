@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace ASPMedAPI.Controllers
 {
+    [RoutePrefix("api/bloggpost")]
     public class BloggPostApiController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
