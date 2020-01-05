@@ -1,0 +1,30 @@
+﻿@using ASPMedAPI.Models.Classes
+@model ProfilViewModel
+@{
+    ViewBag.Title = "ChangePicture";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChangePicture</h2>
+
+
+@using (Html.BeginForm("ChangePicture", "Profils", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="File">
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+            <p class="font-weight-bold">Current profile</p>
+            <img src="@Model.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)">
+
+        </div>
+    </div>
+}
+

@@ -30,6 +30,14 @@ namespace ASPMedAPI.Models
 
         public DbSet<Profil> Profil { get; set; }
 
+        public DbSet<Vän> Vän { get; set; }
+
+        public DbSet<VänFörfrågan> VänFörfrågningar { get; set; }
+
+        public DbSet<BloggPost> BloggPosts { get; set; }
+
+        public DbSet<UserPost> Posts { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ASPMedAPI.Models;
 using ASPMedAPI.Models.Classes;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace ASPMedAPI.Controllers
 {
@@ -73,8 +74,9 @@ namespace ASPMedAPI.Controllers
         // POST: Images/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create(/*[Bind(Include = "Image_ID,Title,ImagePath")]*/ Image image)
         {
             string fileName = Path.GetFileNameWithoutExtension(image.ImageFile.FileName);
@@ -86,31 +88,39 @@ namespace ASPMedAPI.Controllers
             image.ImageFile.SaveAs(fileName);
 
 
-            //var pdb = new ApplicationDbContext();
+            var db = new ApplicationDbContext();
 
-            //var userId = User.Identity.GetUserId();
-            //var profile = pdb.Images.FirstOrDefault(x => x.Image_ID == id);
-            //profile.ImagePath = fileName;
-            //pdb.SaveChanges();
+            var userId = User.Identity.GetUserId();
+            var profile = db.Images.FirstOrDefault(x => x.Image_ID.ToString() == userId);
+            profile.ImagePath = fileName;
+            //db.SaveChanges();
 
+            if (ModelState.IsValid)
+            {
+                db.Images.Add(image);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(image);
+        }
 
 
             //var currentProfile =
             //    pdb.Profiles.FirstOrDefault(p => p.UserID == userId);
-            
+
 
             //var pdb = new ProfileDbContext();
             //var userId = User.Identity.GetUserId();
             //var currentProfile =
-                //pdb.Profiles.FirstOrDefault(p => p.UserID == userId);
+            //pdb.Profiles.FirstOrDefault(p => p.UserID == userId);
             //Bildens sökväg sparas i databasen
             //currentProfile.ProfileURL = NameOfPath;
             //pdb.SaveChanges();
 
             //return RedirectToAction("ShowProfile", "Profile", new { showID = userId });
 
-        //}
-          
+            //}
+
 
 
 
@@ -124,11 +134,11 @@ namespace ASPMedAPI.Controllers
             //    return RedirectToAction("Index");
             //}
 
-            return View(image);
-        }
+            //    return View(image);
+            //}
 
-        // GET: Images/Edit/5
-        public ActionResult Edit(int? id)
+            // GET: Images/Edit/5
+            public ActionResult Edit(int? id)
         {
             if (id == null)
             {

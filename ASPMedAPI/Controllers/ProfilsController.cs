@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ASPMedAPI.Models;
 using ASPMedAPI.Models.Classes;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace ASPMedAPI.Controllers
 {
@@ -22,6 +23,34 @@ namespace ASPMedAPI.Controllers
         {
             return View(db.Profil.ToList());
         }
+
+        public ActionResult ShowProfile(string showID)
+        {
+
+            var db = new ApplicationDbContext();
+            var userInfo = db.Profil.FirstOrDefault(p => p.UserID == showID);
+
+            if (userInfo == null)
+            {
+                return RedirectToAction("Error", "Profile");
+            }
+            else
+            {
+                return View(new ProfilViewModel
+                {
+                    UserID = userInfo.UserID,
+                    Förnamn = userInfo.Förnamn,
+                    Efternamn = userInfo.Efternamn,
+                    FödelseDatum = userInfo.Födelsedatum,
+                    ProfileURL = userInfo.ProfileURL,
+
+
+                });
+
+                //return View(db.Profil.ToList());
+            }
+        }
+
 
         // GET: Profils/Details/5
         public ActionResult Details(string id)
@@ -156,6 +185,40 @@ namespace ASPMedAPI.Controllers
                     !(s.UserID.Equals(currentUserID))));
             return View(Profiles);
         }
+
+        public ActionResult ChangePicture(HttpPostedFileBase File)
+        {
+            
+            if (File != null && File.ContentLength > 0)
+            {
+                
+                var NoExtension = Path.GetFileNameWithoutExtension(File.FileName);               
+                var Extension = Path.GetExtension(File.FileName);
+                
+                var NameOfFile = NoExtension + DateTime.Now.ToString("yyyy-MM-dd-fff") + Extension;
+               
+                var NameOfPath = "/Images/" + NameOfFile;
+                string FilePath = Path.Combine(Server.MapPath("~/Images/"), NameOfFile);
+                
+                File.SaveAs(FilePath);
+
+                var pdb = new ApplicationDbContext();
+                var userId = User.Identity.GetUserId();
+                var currentProfile =
+                    pdb.Profil.FirstOrDefault(p => p.UserID == userId);
+                
+                currentProfile.ProfileURL = NameOfPath;
+                pdb.SaveChanges();
+
+                return RedirectToAction("ShowProfile", "Profils", new { showID = userId });
+
+            }
+            else
+            {
+                return RedirectToAction("Error", "Profils");
+            }
+        }
+
 
 
 

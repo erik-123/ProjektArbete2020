@@ -1,0 +1,22 @@
+﻿@model  ASPMedAPI.Models.Classes.RequestSent
+@{
+    ViewBag.Title = "RequestList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Success)
+{
+    <div class="alert alert-success" role="alert">
+        Friend request added.
+    </div>
+}
+else
+{
+   
+    <div class="alert alert-danger" role="alert">
+        @Model.Error
+    </div>
+}
+@Html.ActionLink("» Profile", "Index", "Friend", null)
+
+

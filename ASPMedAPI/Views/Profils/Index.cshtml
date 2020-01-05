@@ -32,28 +32,36 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Förnamn)
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Förnamn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Efternamn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Födelsedatum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProfileURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Bio)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+    </td>
+
+    <td>
+        @using (Html.BeginForm("Create", "Vän")) 
+        {
+            <input type="hidden" name="UserID" value="@item.UserID" />
+            <input type="submit" value="Add friend" />
+        }
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Efternamn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Födelsedatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfileURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
-        </td>
-    </tr>
+</tr>
 }
 
 </table>

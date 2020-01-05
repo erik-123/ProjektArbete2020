@@ -49,12 +49,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,12 +176,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BloggPostApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfilsController.cs" />
+    <Compile Include="Controllers\VänController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,11 +200,36 @@
     <Compile Include="Migrations\202001011837005_tss.Designer.cs">
       <DependentUpon>202001011837005_tss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001020925424_vän.cs" />
+    <Compile Include="Migrations\202001020925424_vän.Designer.cs">
+      <DependentUpon>202001020925424_vän.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001041148117_Förfrågningar.cs" />
+    <Compile Include="Migrations\202001041148117_Förfrågningar.Designer.cs">
+      <DependentUpon>202001041148117_Förfrågningar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001050925392_BloggPost.cs" />
+    <Compile Include="Migrations\202001050925392_BloggPost.Designer.cs">
+      <DependentUpon>202001050925392_BloggPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001051333274_test3!.cs" />
+    <Compile Include="Migrations\202001051333274_test3!.Designer.cs">
+      <DependentUpon>202001051333274_test3!.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Classes\BloggPost.cs" />
+    <Compile Include="Models\Classes\BloggPostViewModel.cs" />
     <Compile Include="Models\Classes\Image.cs" />
     <Compile Include="Models\Classes\Post.cs" />
+    <Compile Include="Models\Classes\PostViewModel.cs" />
     <Compile Include="Models\Classes\Profil.cs" />
+    <Compile Include="Models\Classes\ProfilViewModel.cs" />
+    <Compile Include="Models\Classes\UserPosts.cs" />
+    <Compile Include="Models\Classes\Vän.cs" />
+    <Compile Include="Models\Classes\VänFörfrågan.cs" />
+    <Compile Include="Models\Classes\VänFörfråganViewModel.cs" />
+    <Compile Include="Models\Classes\VänList.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -270,6 +307,20 @@
     <Content Include="Views\Profils\Edit.cshtml" />
     <Content Include="Views\Profils\Index.cshtml" />
     <Content Include="Views\Profils\Search.cshtml" />
+    <Content Include="Views\Vän\Create.cshtml" />
+    <Content Include="Views\Vän\Delete.cshtml" />
+    <Content Include="Views\Vän\Details.cshtml" />
+    <Content Include="Views\Vän\Edit.cshtml" />
+    <Content Include="Views\Vän\Index.cshtml" />
+    <Content Include="Views\Vän\VänList.cshtml" />
+    <Content Include="Views\Vän\VänLista2.cshtml" />
+    <Content Include="Views\Vän\StartIndex.cshtml" />
+    <Content Include="Views\Vän\RequestList.cshtml" />
+    <Content Include="Views\Vän\IncommingList.cshtml" />
+    <Content Include="Views\Vän\OutgoingList.cshtml" />
+    <Content Include="Views\Vän\FriendList.cshtml" />
+    <Content Include="Views\Profils\ShowProfile.cshtml" />
+    <Content Include="Views\Profils\ChangePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +347,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001011837005_tss.resx">
       <DependentUpon>202001011837005_tss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001020925424_vän.resx">
+      <DependentUpon>202001020925424_vän.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001041148117_Förfrågningar.resx">
+      <DependentUpon>202001041148117_Förfrågningar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001050925392_BloggPost.resx">
+      <DependentUpon>202001050925392_BloggPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001051333274_test3!.resx">
+      <DependentUpon>202001051333274_test3!.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
