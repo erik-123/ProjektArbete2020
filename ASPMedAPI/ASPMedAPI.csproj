@@ -199,9 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BloggPostApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfilsController.cs" />
     <Compile Include="Controllers\VänController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,12 +233,14 @@
     <Compile Include="Migrations\202001051333274_test3!.Designer.cs">
       <DependentUpon>202001051333274_test3!.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001071552063_taBort.cs" />
+    <Compile Include="Migrations\202001071552063_taBort.Designer.cs">
+      <DependentUpon>202001071552063_taBort.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\BloggPost.cs" />
     <Compile Include="Models\Classes\BloggPostViewModel.cs" />
-    <Compile Include="Models\Classes\Image.cs" />
-    <Compile Include="Models\Classes\Post.cs" />
     <Compile Include="Models\Classes\PostViewModel.cs" />
     <Compile Include="Models\Classes\Profil.cs" />
     <Compile Include="Models\Classes\ProfilViewModel.cs" />
@@ -310,16 +310,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Posts\Create.cshtml" />
-    <Content Include="Views\Posts\Delete.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
-    <Content Include="Views\Posts\Edit.cshtml" />
-    <Content Include="Views\Posts\Index.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
     <Content Include="Views\Profils\Create.cshtml" />
     <Content Include="Views\Profils\Delete.cshtml" />
     <Content Include="Views\Profils\Details.cshtml" />
@@ -330,9 +320,6 @@
     <Content Include="Views\Vän\Delete.cshtml" />
     <Content Include="Views\Vän\Details.cshtml" />
     <Content Include="Views\Vän\Edit.cshtml" />
-    <Content Include="Views\Vän\Index.cshtml" />
-    <Content Include="Views\Vän\VänList.cshtml" />
-    <Content Include="Views\Vän\VänLista2.cshtml" />
     <Content Include="Views\Vän\StartIndex.cshtml" />
     <Content Include="Views\Vän\RequestList.cshtml" />
     <Content Include="Views\Vän\IncommingList.cshtml" />
@@ -378,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001051333274_test3!.resx">
       <DependentUpon>202001051333274_test3!.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071552063_taBort.resx">
+      <DependentUpon>202001071552063_taBort.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

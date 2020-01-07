@@ -25,8 +25,6 @@ namespace ASPMedAPI.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<Post> Post { get; set; } 
-        public DbSet<Image> Images { get; set;}
 
         public DbSet<Profil> Profil { get; set; }
 
