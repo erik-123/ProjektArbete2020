@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ASPMedAPI.Models.Classes.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    @*<tr>
+        <th>
+            @Html.DisplayNameFor(model => model.post_txt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.post_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.post_like)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.post_txt) at @Html.DisplayFor(modelItem => item.post_date) <br />
+            @Html.DisplayFor(modelItem => item.post_like) likes <br />
+            @Html.ActionLink("Like", "Likes", new { id = item.post_id })
+        </td>
+        
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.post_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.post_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.post_id })
+        </td>*@
+    </tr>
+}
+
+</table>
