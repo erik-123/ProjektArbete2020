@@ -300,8 +300,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -327,6 +325,7 @@
     <Content Include="Views\Vän\FriendList.cshtml" />
     <Content Include="Views\Profils\ShowProfile.cshtml" />
     <Content Include="Views\Profils\ChangePicture.cshtml" />
+    <Content Include="Views\Profils\HämtaTreProfiler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
