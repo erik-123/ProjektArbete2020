@@ -20,7 +20,7 @@
             @Html.TextBox("Efternamn")
         </div>
        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">SÖK</button>
     </form>
 }
 <hr />
@@ -68,7 +68,7 @@
 
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |*@
-                    @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                    @Html.ActionLink("Visa Profil", "Details", new { id = item.UserID })
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.UserID })*@
                 </td>
             </tr>

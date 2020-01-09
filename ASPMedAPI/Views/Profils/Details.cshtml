@@ -19,7 +19,6 @@
 <div>
     <h4>Profil</h4>
     <hr />
-    <button type="button" onclick="location.href='@Url.Action("Index","Vän", "Index")'">Add friend</button>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Förnamn)
@@ -65,7 +64,7 @@
 </div>
 @if (!(Model.UserID == User.Identity.GetUserId()))
 {
-    @Html.ActionLink("» Add friend", "RequestList", "Vän",
+    @Html.ActionLink("» Lägg till vän", "RequestList", "Vän",
                 new { friendID = Model.UserID },
                 new { @class = "btn btn-primary" })
 
@@ -73,6 +72,5 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka", "Index")
 </p>

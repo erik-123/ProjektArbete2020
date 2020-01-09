@@ -16,7 +16,7 @@
 
 @if (!(Model.UserID == User.Identity.GetUserId()))
 {
-    @Html.ActionLink("» Add friend", "RequestList", "Vän",
+    @Html.ActionLink("» Lägg till vän", "RequestList", "Vän",
                 new { friendID = Model.UserID },
                 new { @class = "btn btn-primary" })
 
