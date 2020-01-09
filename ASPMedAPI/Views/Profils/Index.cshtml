@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<ASPMedAPI.Models.Classes.Profil>
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Profiler på BÄRSDAGS</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,40 +30,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Bio)
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Förnamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Efternamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Födelsedatum)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProfileURL)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Bio)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Förnamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Efternamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Födelsedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
+                @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) |
+                @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
+            </td>
 
-    <td>
-        @using (Html.BeginForm("Create", "Vän")) 
-        {
-            <input type="hidden" name="UserID" value="@item.UserID" />
-            <input type="submit" value="Add friend" />
-        }
-        </td>
-</tr>
-}
+        </tr>
+    }
 
 </table>
