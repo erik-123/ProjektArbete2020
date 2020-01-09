@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ASPMedAPI.Models.Classes.Profil>
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +8,7 @@
 
 <h2>Profiler på BÄRSDAGS</h2>
 
-<p>@Html.ActionLink("Sök profil","Search", "Profils") </p>
+<p>@Html.ActionLink("Sök profil", "Search", "Profils") </p>
 <table class="table">
     <tr>
         <th>
@@ -28,37 +29,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Förnamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Efternamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Födelsedatum)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProfileURL)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Bio)
-    </td>
-    <td>
-        @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
-        @Html.ActionLink("Mer info", "Details", new { id = item.UserID }) |
-        @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Förnamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Efternamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Födelsedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
+                @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) |
+                @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
+            </td>
 
-    <td>
-        @using (Html.BeginForm("Create", "Vän")) 
-        {
-            <input type="hidden" name="UserID" value="@item.UserID" />
-            <input type="submit" value="Lägg till vän" />
-        }
-        </td>
-</tr>
-}
+        </tr>
+    }
 
 </table>
