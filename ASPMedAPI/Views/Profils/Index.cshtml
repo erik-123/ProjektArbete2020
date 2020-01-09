@@ -5,12 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Profiler på BÄRSDAGS</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>@Html.ActionLink("Search after profiles","Search", "Profils") </p>
+<p>@Html.ActionLink("Sök profil","Search", "Profils") </p>
 <table class="table">
     <tr>
         <th>
@@ -49,16 +46,16 @@
         @Html.DisplayFor(modelItem => item.Bio)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+        @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
+        @Html.ActionLink("Mer info", "Details", new { id = item.UserID }) |
+        @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
     </td>
 
     <td>
         @using (Html.BeginForm("Create", "Vän")) 
         {
             <input type="hidden" name="UserID" value="@item.UserID" />
-            <input type="submit" value="Add friend" />
+            <input type="submit" value="Lägg till vän" />
         }
         </td>
 </tr>
