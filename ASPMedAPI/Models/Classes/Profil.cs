@@ -11,7 +11,11 @@ namespace ASPMedAPI.Models.Classes
             public string Förnamn { get; set; }
             public string Efternamn { get; set; }
             public DateTime Födelsedatum { get; set; }
-            public string ProfileURL { get; set; }
+
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload File")]
+        [Required(ErrorMessage = "Please choose file to upload.")]
+        public string ProfileURL { get; set; }
             public string Bio { get; set; }
 
         

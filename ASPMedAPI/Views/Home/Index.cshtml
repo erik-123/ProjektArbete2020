@@ -1,16 +1,20 @@
-﻿
+﻿@model IEnumerable<ASPMedAPI.Models.Classes.Profil>  
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>En middag med Hugo</h1>
-    <p class="lead">En middag med Hugo är en unik chans för dig att hitta den rätta! 
-    Registera dig idag och börja ditt nya liv</p>
+    <p class="lead">
+        En middag med Hugo är en unik chans för dig att hitta den rätta!
+        Registera dig idag och börja ditt nya liv
+    </p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
+@*Denna kod ska tas bort*@
+
+@*<div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -30,4 +34,23 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+</div>*@
+
+@* Här "loopar" vi igenom listan med profiler *@
+@* Hämtar ut förnamn och efternamn, Profilbild *@
+@* Skickar en actionlink till användarens profil *@
+@* Style koden bör läggas i en CSS fil *@
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <h3>@Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)</h3>
+            <img src="@Html.DisplayFor(modelItem => item.ProfileURL)" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
+                        <p>@Html.DisplayFor(modelItem => item.Bio)</p>
+            @Html.ActionLink("» View Profile", "ShowProfile", "Profils",  
+             new { showID = item.UserID },
+             new { @class = "btn btn-primary" })
+        </div>
+    }
 </div>

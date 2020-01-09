@@ -1,14 +1,12 @@
-﻿@using ASPMedAPI.Models.Classes
-@model ProfilViewModel
+﻿@model ASPMedAPI.Models.Classes.ProfilViewModel
+
 @{
-    ViewBag.Title = "ChangePicture";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ChangeProfileImage";
 }
 
-<h2>ChangePicture</h2>
-
-
-@using (Html.BeginForm("ChangePicture", "Profils", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<h2>Change profile image</h2>
+<!-- Visas forumläret för att byta profilbild. Visar även vilken användaren har just nu. -->
+@using (Html.BeginForm("ChangePicture", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

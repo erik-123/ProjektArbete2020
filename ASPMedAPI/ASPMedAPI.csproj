@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202001071552063_taBort.Designer.cs">
       <DependentUpon>202001071552063_taBort.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001072004290_Bild.cs" />
+    <Compile Include="Migrations\202001072004290_Bild.Designer.cs">
+      <DependentUpon>202001072004290_Bild.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\BloggPost.cs" />
@@ -326,10 +330,12 @@
     <Content Include="Views\Vän\OutgoingList.cshtml" />
     <Content Include="Views\Vän\FriendList.cshtml" />
     <Content Include="Views\Profils\ShowProfile.cshtml" />
-    <Content Include="Views\Profils\ChangePicture.cshtml" />
+    <Content Include="Views\Profils\ChangeProfileImage.cshtml" />
+    <Content Include="Views\Profils\AddImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001071552063_taBort.resx">
       <DependentUpon>202001071552063_taBort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001072004290_Bild.resx">
+      <DependentUpon>202001072004290_Bild.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

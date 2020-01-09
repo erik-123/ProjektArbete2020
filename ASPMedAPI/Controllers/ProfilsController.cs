@@ -78,14 +78,32 @@ namespace ASPMedAPI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")] Profil profil)
+        public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")]HttpPostedFileBase file, Profil profil)
         {
             try
             {
                 if (ModelState.IsValid) {
-                    db.Profil.Add(profil);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+
+                    try
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            string path = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                            file.SaveAs(path);
+                            ViewBag.FileStatus = "File uploaded successfully.";
+                            ViewBag.Message = "File uploaded successfully.";
+                            db.Profil.Add(profil);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.FileStatus = "Error while file uploading.";
+                        ViewBag.Message = "Error" + ex.Message.ToString();
+                    }
                 }
             }
 
@@ -102,15 +120,15 @@ namespace ASPMedAPI.Controllers
             return View(profil);
         }
 
-            //if (ModelState.IsValid)
-            //{
-            //    db.Profil.Add(profil);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+        //if (ModelState.IsValid)
+        //{
+        //    db.Profil.Add(profil);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-            
-       // }
+
+        // }
 
         // GET: Profils/Edit/5
         public ActionResult Edit(string id)
@@ -168,14 +186,14 @@ namespace ASPMedAPI.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
-        
-        
+
+
+
         [HttpGet]
         public ActionResult Search(string förnamn, string efternamn)
         {
             ViewBag.Message = "Search page.";
-            
+
             var currentUserID = User.Identity.GetUserId();
             var Profiles = new ApplicationDbContext().Profil.Where(
                     (s =>
@@ -186,29 +204,29 @@ namespace ASPMedAPI.Controllers
             return View(Profiles);
         }
 
-        public ActionResult ChangePicture(HttpPostedFileBase File)
+        public ActionResult ChangeProfileImage(HttpPostedFileBase File)
         {
-            
+
             if (File != null && File.ContentLength > 0)
             {
-                
-                var NoExtension = Path.GetFileNameWithoutExtension(File.FileName);               
+
+                var NoExtension = Path.GetFileNameWithoutExtension(File.FileName);
                 var Extension = Path.GetExtension(File.FileName);
-                
+
                 var NameOfFile = NoExtension + DateTime.Now.ToString("yyyy-MM-dd-fff") + Extension;
-               
+
                 var NameOfPath = "/Images/" + NameOfFile;
                 string FilePath = Path.Combine(Server.MapPath("~/Images/"), NameOfFile);
-                
+
                 File.SaveAs(FilePath);
 
-                var pdb = new ApplicationDbContext();
+                var db = new ApplicationDbContext();
                 var userId = User.Identity.GetUserId();
                 var currentProfile =
-                    pdb.Profil.FirstOrDefault(p => p.UserID == userId);
-                
+                    db.Profil.FirstOrDefault(p => p.UserID == userId);
+
                 currentProfile.ProfileURL = NameOfPath;
-                pdb.SaveChanges();
+                db.SaveChanges();
 
                 return RedirectToAction("ShowProfile", "Profils", new { showID = userId });
 
@@ -218,11 +236,63 @@ namespace ASPMedAPI.Controllers
                 return RedirectToAction("Error", "Profils");
             }
         }
+        
+        [HttpPost]
+        public ActionResult AddImage(ProfileUpdateViewModel model, HttpPostedFileBase file)
+        {
+            var db = new ApplicationDbContext();
+            var currentUser = User.Identity.GetUserId();
+            var currentProfile = db.Profil.FirstOrDefault(x => x.UserID == currentUser);
+
+            if (file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                string _path = Path.Combine(Server.MapPath("~/images"), _FileName);
+                file.SaveAs(_path);
+                var imgNameToSave = "/images/" + _FileName;
+                db.Profil.FirstOrDefault(p => p.UserID == currentUser).ProfileURL = imgNameToSave;
+
+            }
+            else
+            {
+                currentProfile.ProfileURL = model.ImageName;
+            }
+            db.SaveChanges();
+            return View("~/Views/Profils/AddImage.cshtml");
+            //return RedirectToAction("ShowProfile", "Profils");
+        }
+
+        public ActionResult AddImage()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult UploadFiles(HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    if (file != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                        file.SaveAs(path);
+
+                    }
+                    ViewBag.FileStatus = "File uploaded succefully.";
+
+                }
+                catch (Exception) { ViewBag.FileStatus = "Error while uploadning"; }
+            }
+            return View("AddImage");
+        }
+    
 
 
-
-
-        protected override void Dispose(bool disposing)
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
