@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ASPMedAPI.Controllers
 {
+    [Authorize]
     public class VänController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

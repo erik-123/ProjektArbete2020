@@ -14,6 +14,7 @@ using System.IO;
 
 namespace ASPMedAPI.Controllers
 {
+    [Authorize]
     public class ProfilsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
