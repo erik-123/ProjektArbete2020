@@ -52,7 +52,7 @@
     {
         <div class="col-md-4">
             <h3>@Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)</h3>
-            <img src="@Html.DisplayFor(modelItem => item.ProfileURL)" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
+            <img src="~/Content/Images/@item.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
                         <p>@Html.DisplayFor(modelItem => item.Bio)</p>
             @Html.ActionLink("» View Profile", "ShowProfile", "Profils",  
              new { showID = item.UserID },

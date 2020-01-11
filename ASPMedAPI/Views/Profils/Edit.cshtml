@@ -8,16 +8,56 @@
 <h2>Edit</h2>
 
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Profils", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    <div class="form-horizontal">
+        <h4>ProfileData</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserID)
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.ProfileURL)
+            <div class="col-md-10">
+                @if (Model.ProfileURL != null)
+                {
+                    <img style="max-width: 100%; max-height: 150px;" src="~/Content/Images/@Model.ProfileURL" />
+                }
+                @if (ViewBag.FileUploadError != null)
+                {
+                    <div class="text-danger">
+                        @ViewBag.FileUploadError
+                    </div>
+                }
+                <input type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
     <div class="form-horizontal">
         <h4>Profil</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.UserID)
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProfileURL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProfileURL, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Förnamn, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -44,22 +84,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProfileURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProfileURL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -74,3 +98,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

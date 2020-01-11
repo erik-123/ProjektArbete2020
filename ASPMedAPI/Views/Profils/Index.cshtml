@@ -34,29 +34,35 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Förnamn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Efternamn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Födelsedatum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProfileURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bio)
-            </td>
-            <td>
-                @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
-                @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) |
-                @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
-            </td>
 
-        </tr>
+<tr>
+    <td>
+    
+        <img src="~/Content/Images/@item.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" />
+    
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Förnamn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Efternamn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Födelsedatum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProfileURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Bio)
+    </td>
+    <td>
+        @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
+        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) |
+        @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
+    </td>
+
+</tr>
     }
 
 </table>

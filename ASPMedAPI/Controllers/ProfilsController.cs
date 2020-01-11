@@ -11,6 +11,7 @@ using ASPMedAPI.Models;
 using ASPMedAPI.Models.Classes;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using System.Configuration;
 
 namespace ASPMedAPI.Controllers
 {
@@ -83,7 +84,8 @@ namespace ASPMedAPI.Controllers
         {
             try
             {
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
 
                     try
                     {
@@ -153,6 +155,46 @@ namespace ASPMedAPI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")] Profil profil)
         {
+
+            // När actionen anropas med POST -- dvs från jQuery-script:
+
+            // Hitta ID för nuvarande användare:
+            var userId = User.Identity.GetUserId();
+            // Skapa en appliactionDbContext-referens:
+            var dbContext = new ApplicationDbContext();
+            // Hitta användaren i databasen:
+            var currentUser = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (Request.Files != null && Request.Files.Count > 0)
+            {
+                var uploadedFile = Request.Files[0];
+                var filename = uploadedFile.FileName;
+                var extension = Path.GetExtension(filename);
+                var validExtensions = (
+                    ConfigurationManager
+                        .AppSettings["ValidUploadExtensions"] ?? ".jpg"
+                ).Split(',');
+
+                if (validExtensions.Contains(extension))
+                {
+                    var saveDirectory = Server.MapPath("~/Content/Images");
+                    if (!Directory.Exists(saveDirectory))
+                    {
+                        Directory.CreateDirectory(saveDirectory);
+                    }
+
+                    var saveFilename = userId + extension;
+                    var savePath = Path.Combine(saveDirectory, saveFilename);
+
+                    uploadedFile.SaveAs(savePath);
+
+                    profil.ProfileURL = saveFilename;
+                }
+                else
+                {
+                    ViewBag.FileUploadError = "Invalid extension";
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(profil).State = EntityState.Modified;
@@ -161,9 +203,19 @@ namespace ASPMedAPI.Controllers
             }
             return View(profil);
         }
+    
 
-        // GET: Profils/Delete/5
-        public ActionResult Delete(string id)
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(profil).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(profil);}
+    
+
+    // GET: Profils/Delete/5
+    public ActionResult Delete(string id)
         {
             if (id == null)
             {
