@@ -241,6 +241,10 @@
     <Compile Include="Migrations\202001072004290_Bild.Designer.cs">
       <DependentUpon>202001072004290_Bild.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001111006452_FörsökerFixAprofil.cs" />
+    <Compile Include="Migrations\202001111006452_FörsökerFixAprofil.Designer.cs">
+      <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\BloggPost.cs" />
@@ -377,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001072004290_Bild.resx">
       <DependentUpon>202001072004290_Bild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001111006452_FörsökerFixAprofil.resx">
+      <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

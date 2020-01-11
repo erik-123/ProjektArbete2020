@@ -80,48 +80,110 @@ namespace ASPMedAPI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")]HttpPostedFileBase file, Profil profil)
+        //public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")]HttpPostedFileBase file, Profil profil)
+        //{
+            public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")] Profil profil)
+            {      
+            // Hitta ID för nuvarande användare:
+        var userId = User.Identity.GetUserId();
+        // Skapa en appliactionDbContext-referens:
+        var dbContext = new ApplicationDbContext();
+        // Hitta användaren i databasen:
+        var currentUser = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (ModelState.IsValid)
+            {
+                db.Profil.Add(profil);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+           }
+
+        //// När actionen anropas med POST -- dvs från jQuery-script:
+
+
+
+        //if (Request.Files != null && Request.Files.Count > 0)
+        //{
+        //    var uploadedFile = Request.Files[0];
+        //    var filename = uploadedFile.FileName;
+        //    var extension = Path.GetExtension(filename);
+        //    var validExtensions = (
+        //        ConfigurationManager
+        //            .AppSettings["ValidUploadExtensions"] ?? ".jpg"
+        //    ).Split(',');
+
+        //    if (validExtensions.Contains(extension))
+        //    {
+        //        var saveDirectory = Server.MapPath("~/Content/Images");
+        //        if (!Directory.Exists(saveDirectory))
+        //        {
+        //            Directory.CreateDirectory(saveDirectory);
+        //        }
+
+        //        var saveFilename = userId + extension;
+        //        var savePath = Path.Combine(saveDirectory, saveFilename);
+
+        //        uploadedFile.SaveAs(savePath);
+
+        //        profil.ProfileURL = saveFilename;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.FileUploadError = "Invalid extension";
+        //    }
+        //}
+        //if (ModelState.IsValid)
+        //{
+        //    db.Entry(profil).State = EntityState.Modified;
+        //    db.SaveChanges();
+        //    db.Profil.Add(profil);
+        //return RedirectToAction("Index");
+        //}
+        //return View(profil);
+        // }
+        //try
+        //{
+        //if (ModelState.IsValid)
+        //{
+
+        /*try
         {
-            try
+            /*if (file != null && file.ContentLength > 0)
             {
-                if (ModelState.IsValid)
-                {
+                string path = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                ViewBag.FileStatus = "File uploaded successfully.";
+                ViewBag.Message = "File uploaded successfully.";*/
 
-                    /*try
-                    {
-                        /*if (file != null && file.ContentLength > 0)
-                        {
-                            string path = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
-                            file.SaveAs(path);
-                            ViewBag.FileStatus = "File uploaded successfully.";
-                            ViewBag.Message = "File uploaded successfully.";*/
-                            db.Profil.Add(profil);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
+        //db.SaveChanges();
+        //return RedirectToAction("Index");
 
-                       // }
+        // }
 
-                    }
-                   /* catch (Exception ex)
-                    {
-                        ViewBag.FileStatus = "Error while file uploading.";
-                        ViewBag.Message = "Error" + ex.Message.ToString();
-                    }
-                }*/
-            }
+        //  }
+        /* catch (Exception ex)
+         {
+             ViewBag.FileStatus = "Error while file uploading.";
+             ViewBag.Message = "Error" + ex.Message.ToString();
+         }
+     }*/
+        //   }
 
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
-            return View(profil);
-        }
+        //    catch (DbEntityValidationException ex)
+        //    {
+        //        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+        //        {
+        //            foreach (var validationError in entityValidationErrors.ValidationErrors)
+        //            {
+        //                Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+        //            }
+        //        }
+        //    }
+        //    return View(profil);
+        //}
 
         //if (ModelState.IsValid)
         //{
