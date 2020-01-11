@@ -87,27 +87,27 @@ namespace ASPMedAPI.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    try
+                    /*try
                     {
-                        if (file != null && file.ContentLength > 0)
+                        /*if (file != null && file.ContentLength > 0)
                         {
                             string path = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
                             file.SaveAs(path);
                             ViewBag.FileStatus = "File uploaded successfully.";
-                            ViewBag.Message = "File uploaded successfully.";
+                            ViewBag.Message = "File uploaded successfully.";*/
                             db.Profil.Add(profil);
                             db.SaveChanges();
                             return RedirectToAction("Index");
 
-                        }
+                       // }
 
                     }
-                    catch (Exception ex)
+                   /* catch (Exception ex)
                     {
                         ViewBag.FileStatus = "Error while file uploading.";
                         ViewBag.Message = "Error" + ex.Message.ToString();
                     }
-                }
+                }*/
             }
 
             catch (DbEntityValidationException ex)
