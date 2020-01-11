@@ -24,6 +24,22 @@
                     <li>@Html.ActionLink("Profiler", "Index", "Profils")</li>
                     <li>@Html.ActionLink("Om oss", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    @{
+                        var linkText = "Vänner";
+                        //Försöker hämta värdet på IncomingRequestCount ur ViewData
+                        ViewData.TryGetValue("IncomingRequestsCount", out var incomingRequestsCount);
+                        //Castar incomingRequestCount till en nullable int
+                        var icr = (int?)incomingRequestsCount;
+
+                        if (icr.HasValue)
+                        {
+                            linkText += $" ({incomingRequestsCount})";
+                        }
+                        <li>@Html.ActionLink(linkText, "StartIndex", "Vän")</li>
+                    }
+                    <li>@Html.ActionLink("Search", "Search", "Profils")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
