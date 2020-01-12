@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ASPMedAPI.Models;
+using ASPMedAPI.Models.Classes;
 
 namespace ASPMedAPI.Controllers
 {
@@ -149,31 +150,72 @@ namespace ASPMedAPI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        // Here is the default values. Keep in mind, changing these will effect the program.
+                        var dFornamn = "Fornamn";
+                        var dEfternamn = "Efternamn";
+                        var dBio = "Bio";
+                        var dURL = "/Images/default_profile.png";
+                        // ------------------------ //
+                        using (var dbContext = new ApplicationDbContext())
+                        {
+                            dbContext.Profil.Add(new Profil()
+                            {
+                                UserID = user.Id,
+                                Födelsedatum = DateTime.Now,
+                                Bio = dBio,
+                                Förnamn = dFornamn,
+                                Efternamn = dEfternamn,
+                                ProfileURL = dURL
+                            });
+                            dbContext.SaveChanges();
+                        }
 
-                    return RedirectToAction("Create", "Profils");
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Edit", "Profils", new { @id = user.Id });
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
             }
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+            //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+            //            // Send an email with this link
+            //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-        //
-        // GET: /Account/ConfirmEmail
+            //            return RedirectToAction("Create", "Profils");
+            //        }
+            //        AddErrors(result);
+            //    }
+
+            //    // If we got this far, something failed, redisplay form
+            //    return View(model);
+            //}
+
+            //
+            // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {

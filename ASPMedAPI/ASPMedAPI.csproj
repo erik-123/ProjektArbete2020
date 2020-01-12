@@ -273,7 +273,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\BloggPost.cs" />
     <Compile Include="Models\Classes\BloggPostViewModel.cs" />
-    <Compile Include="Models\Classes\Meddelande.cs" />
     <Compile Include="Models\Classes\PostViewModel.cs" />
     <Compile Include="Models\Classes\Profil.cs" />
     <Compile Include="Models\Classes\ProfilViewModel.cs" />
