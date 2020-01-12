@@ -29,10 +29,10 @@
              new { @class = "btn btn-primary" })
                 </td>
                 <td>
-                    @Html.ActionLink("Accept", "RequestRespone", "Friend",
+                    @Html.ActionLink("Accept", "RequestRespone", "Vän",
              new { requestID = item.FriendRequest_Id, acceptRequest = true }, null)
                     /
-                    @Html.ActionLink("Decline", "RequestRespone", "Friend",
+                    @Html.ActionLink("Decline", "RequestRespone", "Vän",
              new { requestID = item.FriendRequest_Id, acceptRequest = false }, null)
                 </td>
             </tr>
@@ -41,5 +41,5 @@
 }
 else
 {
-       <h3>You have no incomming requests.</h3>
+       <h3>Du har inga vänförfrågningar</h3>
 }
