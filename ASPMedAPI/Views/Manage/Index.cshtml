@@ -9,7 +9,7 @@
 <div>
     <h4>Ändra inställningar</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dd>
             @if (Model.HasPassword)
             {
@@ -21,9 +21,9 @@
             }
         </dd>
         <dd>
-                @Html.ActionLink("Redigera profil", "Edit")
+            @Html.ActionLink("Redigera profil", "Edit")
         </dd>
-       
+
 
     </dl>
 </div>

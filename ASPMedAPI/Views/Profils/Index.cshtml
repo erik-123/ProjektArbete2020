@@ -34,7 +34,7 @@
 <tr>
     <td>
     
-        <img src="~/Content/Images/@item.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" />
+        <img src="~/Content/Images/@item.ProfileURL" style="height: 75px; width: 75px;" class="card-img-top" />
     
     </td>
     <td>
@@ -50,7 +50,8 @@
         @Html.DisplayFor(modelItem => item.Bio)
     </td>
     <td>
-        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) 
+        @Html.ActionLink("Redigera profil", "Edit", new { id = item.UserID })
+        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID })
     </td>
 
 </tr>
