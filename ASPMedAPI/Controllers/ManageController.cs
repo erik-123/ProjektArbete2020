@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ASPMedAPI.Models;
+using ASPMedAPI.Models.Classes;
+using System.Net;
 
 namespace ASPMedAPI.Controllers
 {
@@ -15,6 +17,7 @@ namespace ASPMedAPI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private object db;
 
         public ManageController()
         {
@@ -48,6 +51,11 @@ namespace ASPMedAPI.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
         }
 
         //

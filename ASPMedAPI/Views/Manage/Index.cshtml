@@ -1,13 +1,13 @@
 ﻿@model ASPMedAPI.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Hantera konto";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Ändra inställningar</h4>
     <hr />
     <dl class="dl-horizontal">
         <dd>
@@ -21,7 +21,7 @@
             }
         </dd>
         <dd>
-                @Html.ActionLink("Redigera profil", "ChangePassword")
+                @Html.ActionLink("Redigera profil", "Edit")
         </dd>
        
 

@@ -4,15 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Contact settings </h2>
+<h2>Vänner</h2>
 <ul class="nav">
     <li class="nav-item">
-        @Html.ActionLink("» Friendlist", "FriendList", "Friend", null)
+        @Html.ActionLink("» Mina vänner", "FriendList", "Friend", null)
     </li>
     <li class="nav-item">
-        @Html.ActionLink("» Outgoing (" + @Model.Outgoing + ")", "OutgoingList", "Friend", null)
+        @Html.ActionLink("» Skickade vänförfrågningar (" + @Model.Outgoing + ")", "OutgoingList", "Friend", null)
     </li>
     <li class="nav-item">
-        @Html.ActionLink("» Incomming (" + @Model.Incomming + ")", "IncommingList", "Friend", null)
+        @Html.ActionLink("» Mottagna vänförfrågningar (" + @Model.Incomming + ")", "IncommingList", "Friend", null)
     </li>
 </ul>
