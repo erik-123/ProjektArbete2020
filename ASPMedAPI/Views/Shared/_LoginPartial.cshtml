@@ -6,11 +6,11 @@
     @Html.AntiForgeryToken()
 
    
-    <ul class="navbar">
-        <li>
+    <ul class="nav navbar-nav navbar-right">
+        
          @Html.Action("CountRequest", "Vän", "incomingList") 
-            </li>
-       <li> @Html.ActionLink("Notifikationer", "Vän", "incomingList", routeValues: null, htmlAttributes: new { id = "data" })</li>
+            
+        @Html.ActionLink("Notifikationer", "IncommingList", "Vän", routeValues: null, htmlAttributes: new { id = "data" })
 
         
         <li>

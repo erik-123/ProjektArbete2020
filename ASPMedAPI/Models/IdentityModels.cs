@@ -34,9 +34,7 @@ namespace ASPMedAPI.Models
 
         public DbSet<BloggPost> BloggPosts { get; set; }
 
-        public DbSet<UserPost> Posts { get; set; }
-
-
+       
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

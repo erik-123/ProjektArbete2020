@@ -14,7 +14,7 @@ namespace ASPMedAPI.Models.Classes
             public string ProfileURL { get; set; }
             public string Bio { get; set; }
 
-             public bool aktiv { get; set; }
+             
 
         
     }

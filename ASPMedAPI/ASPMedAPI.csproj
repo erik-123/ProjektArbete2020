@@ -336,49 +336,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912311059445_mig.cs" />
-    <Compile Include="Migrations\201912311059445_mig.Designer.cs">
-      <DependentUpon>201912311059445_mig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001011141139_ye.cs" />
-    <Compile Include="Migrations\202001011141139_ye.Designer.cs">
-      <DependentUpon>202001011141139_ye.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001011837005_tss.cs" />
-    <Compile Include="Migrations\202001011837005_tss.Designer.cs">
-      <DependentUpon>202001011837005_tss.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001020925424_vän.cs" />
-    <Compile Include="Migrations\202001020925424_vän.Designer.cs">
-      <DependentUpon>202001020925424_vän.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001041148117_Förfrågningar.cs" />
-    <Compile Include="Migrations\202001041148117_Förfrågningar.Designer.cs">
-      <DependentUpon>202001041148117_Förfrågningar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001050925392_BloggPost.cs" />
-    <Compile Include="Migrations\202001050925392_BloggPost.Designer.cs">
-      <DependentUpon>202001050925392_BloggPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001051333274_test3!.cs" />
-    <Compile Include="Migrations\202001051333274_test3!.Designer.cs">
-      <DependentUpon>202001051333274_test3!.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001071552063_taBort.cs" />
-    <Compile Include="Migrations\202001071552063_taBort.Designer.cs">
-      <DependentUpon>202001071552063_taBort.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001072004290_Bild.cs" />
-    <Compile Include="Migrations\202001072004290_Bild.Designer.cs">
-      <DependentUpon>202001072004290_Bild.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001111006452_FörsökerFixAprofil.cs" />
-    <Compile Include="Migrations\202001111006452_FörsökerFixAprofil.Designer.cs">
-      <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001131830447_aktiv.cs" />
-    <Compile Include="Migrations\202001131830447_aktiv.Designer.cs">
-      <DependentUpon>202001131830447_aktiv.cs</DependentUpon>
+    <Compile Include="Migrations\202001132124575_test.cs" />
+    <Compile Include="Migrations\202001132124575_test.Designer.cs">
+      <DependentUpon>202001132124575_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -387,7 +347,6 @@
     <Compile Include="Models\Classes\PostViewModel.cs" />
     <Compile Include="Models\Classes\Profil.cs" />
     <Compile Include="Models\Classes\ProfilViewModel.cs" />
-    <Compile Include="Models\Classes\UserPosts.cs" />
     <Compile Include="Models\Classes\Vän.cs" />
     <Compile Include="Models\Classes\VänFörfrågan.cs" />
     <Compile Include="Models\Classes\VänFörfråganViewModel.cs" />
@@ -488,38 +447,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912311059445_mig.resx">
-      <DependentUpon>201912311059445_mig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001011141139_ye.resx">
-      <DependentUpon>202001011141139_ye.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001011837005_tss.resx">
-      <DependentUpon>202001011837005_tss.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001020925424_vän.resx">
-      <DependentUpon>202001020925424_vän.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001041148117_Förfrågningar.resx">
-      <DependentUpon>202001041148117_Förfrågningar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001050925392_BloggPost.resx">
-      <DependentUpon>202001050925392_BloggPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001051333274_test3!.resx">
-      <DependentUpon>202001051333274_test3!.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001071552063_taBort.resx">
-      <DependentUpon>202001071552063_taBort.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001072004290_Bild.resx">
-      <DependentUpon>202001072004290_Bild.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001111006452_FörsökerFixAprofil.resx">
-      <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001131830447_aktiv.resx">
-      <DependentUpon>202001131830447_aktiv.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001132124575_test.resx">
+      <DependentUpon>202001132124575_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

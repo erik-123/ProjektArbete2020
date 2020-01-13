@@ -3,30 +3,34 @@ namespace ASPMedAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mig : DbMigration
+    public partial class test : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Images",
+                "dbo.BloggPosts",
                 c => new
                     {
-                        Image_ID = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        ImagePath = c.String(),
+                        Post_Id = c.Int(nullable: false, identity: true),
+                        Avsändare = c.String(),
+                        Mottagare = c.String(),
+                        SkickatDatum = c.DateTimeOffset(nullable: false, precision: 7),
+                        MeddelandeText = c.String(),
                     })
-                .PrimaryKey(t => t.Image_ID);
+                .PrimaryKey(t => t.Post_Id);
             
             CreateTable(
-                "dbo.Posts",
+                "dbo.Profils",
                 c => new
                     {
-                        post_id = c.Int(nullable: false, identity: true),
-                        post_txt = c.String(),
-                        post_date = c.DateTime(nullable: false),
-                        post_like = c.Int(nullable: false),
+                        UserID = c.String(nullable: false, maxLength: 128),
+                        Förnamn = c.String(),
+                        Efternamn = c.String(),
+                        Födelsedatum = c.DateTime(nullable: false),
+                        ProfileURL = c.String(),
+                        Bio = c.String(),
                     })
-                .PrimaryKey(t => t.post_id);
+                .PrimaryKey(t => t.UserID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -96,6 +100,26 @@ namespace ASPMedAPI.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.Vän",
+                c => new
+                    {
+                        Vän_ID = c.Int(nullable: false, identity: true),
+                        Person1 = c.String(),
+                        Person2 = c.String(),
+                    })
+                .PrimaryKey(t => t.Vän_ID);
+            
+            CreateTable(
+                "dbo.VänFörfrågan",
+                c => new
+                    {
+                        Vän_ID = c.Int(nullable: false, identity: true),
+                        Person1 = c.String(),
+                        Person2 = c.String(),
+                    })
+                .PrimaryKey(t => t.Vän_ID);
+            
         }
         
         public override void Down()
@@ -110,13 +134,15 @@ namespace ASPMedAPI.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropTable("dbo.VänFörfrågan");
+            DropTable("dbo.Vän");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Posts");
-            DropTable("dbo.Images");
+            DropTable("dbo.Profils");
+            DropTable("dbo.BloggPosts");
         }
     }
 }
