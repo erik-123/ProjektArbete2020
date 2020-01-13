@@ -29,6 +29,11 @@ namespace ASPMedAPI.Controllers
             SignInManager = signInManager;
         }
 
+        public ActionResult _ManagePartialView()
+        {
+            return View();
+        }
+
         public ApplicationSignInManager SignInManager
         {
             get

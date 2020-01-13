@@ -1,38 +1,28 @@
-﻿@using Microsoft.AspNet.Identity;
-
-@model ASPMedAPI.Models.Classes.Profil
-
+﻿@model ASPMedAPI.Models.ProfilViewModel
+@using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = Model.Förnamn + " " + Model.Efternamn;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProfilStartsida";
 }
 
+<h1>@Model.Förnamn @Model.Efternamn</h1>
 
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
-    <system.web>
-        <authorization>
-            <allow users="*" />
-        </authorization>
-    </system.web>
-</configuration>
 
-<h2>@Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)</h2>
 <div class="form-group">
-    @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.HiddenFor(model => model.ProfileURL)
-    <div class="col-md-10">
+    @*@Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.ProfileURL)*@
+    <div class="col-md-4">
         @if (Model.ProfileURL != null)
         {
             <img style="width: 300px; height: 250px;" src="~/Content/Images/@Model.ProfileURL" />
         }
     </div>
 </div>
+        
+  
 
+<hr />
 <div>
-    <h4>Profil</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Förnamn)
         </dt>
@@ -50,11 +40,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Födelsedatum)
+            @Html.DisplayNameFor(model => model.FödelseDatum)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Födelsedatum)
+            @Html.DisplayFor(model => model.FödelseDatum)
         </dd>
 
         <dt>
@@ -77,6 +67,8 @@
 
 
 <p>
+    @Html.ActionLink("Edit", "Edit", "Profils", new { id = Model.UserID }, null)
+    <hr />
     @Html.ActionLink("Tillbaka", "Index")
 </p>
 
@@ -107,8 +99,9 @@
 
 
 @section scripts {
-    <script src="~/Scripts/jquery-3.3.1.js" type="application/json"></script>
-    
+    <script src="~/Scripts/jquery-3.3.1.js" type="application/json">
+    </script>
+
     <script>
         function read() {
         $.getJSON("/api/BloggPostApi/list?userId=@Model.UserID")
