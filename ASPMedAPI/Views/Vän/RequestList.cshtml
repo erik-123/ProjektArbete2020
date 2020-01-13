@@ -1,13 +1,13 @@
 ﻿@model  ASPMedAPI.Models.Classes.RequestSent
 @{
-    ViewBag.Title = "RequestList";
+    ViewBag.Title = "Lista över vänförfrågningar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @if (Model.Success)
 {
     <div class="alert alert-success" role="alert">
-        Friend request added.
+        Vänförfrågan har lagt till
     </div>
 }
 else

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ASPMedAPI.Models.Classes.FriendRequestList>
 @{
-    ViewBag.Title = "IncommingList";
+    ViewBag.Title = "Mottagna vänförfrågningar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>IncommingList</h2>
+<h2>@ViewBag.Title</h2>
 @if (!(Model == null))
 {
     <table class="table">
