@@ -1,0 +1,28 @@
+﻿@model ASPMedAPI.Models.Classes.ProfilViewModel
+
+@{
+    ViewBag.Title = "ChangeProfileImage";
+}
+
+<h2>Change profile image</h2>
+<!-- Visas forumläret för att byta profilbild. Visar även vilken användaren har just nu. -->
+@using (Html.BeginForm("ChangePicture", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="File">
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+            <p class="font-weight-bold">Current profile</p>
+            <img src="@Model.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)">
+
+        </div>
+    </div>
+}
+

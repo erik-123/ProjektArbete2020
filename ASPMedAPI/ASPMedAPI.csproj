@@ -411,6 +411,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Profils\Create.cshtml" />
     <Content Include="Views\Profils\Delete.cshtml" />
     <Content Include="Views\Profils\Details.cshtml" />
     <Content Include="Views\Profils\Edit.cshtml" />
@@ -421,6 +422,9 @@
     <Content Include="Views\Vän\IncommingList.cshtml" />
     <Content Include="Views\Vän\OutgoingList.cshtml" />
     <Content Include="Views\Vän\FriendList.cshtml" />
+    <Content Include="Views\Profils\ShowProfile.cshtml" />
+    <Content Include="Views\Profils\ChangeProfileImage.cshtml" />
+    <Content Include="Views\Profils\AddImage.cshtml" />
     <Content Include="Views\Manage\_ManagePartialView.cshtml" />
     <Content Include="Views\Profils\ProfilStartsida.cshtml" />
   </ItemGroup>

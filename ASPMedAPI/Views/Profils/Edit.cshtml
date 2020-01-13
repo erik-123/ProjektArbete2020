@@ -24,7 +24,7 @@
             <div class="col-md-10">
                 @if (Model.ProfileURL != null)
                 {
-                    <img id="Edit" src="~/Content/Images/@Model.ProfileURL" />
+                    <img style="max-width: 100%; max-height: 150px;" src="~/Content/Images/@Model.ProfileURL" />
                 }
                 @if (ViewBag.FileUploadError != null)
                 {

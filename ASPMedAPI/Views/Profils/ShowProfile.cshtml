@@ -1,72 +1,19 @@
 ﻿@using Microsoft.AspNet.Identity;
-
-@model ASPMedAPI.Models.Classes.Profil
-
+@model ASPMedAPI.Models.ProfilViewModel
 @{
     ViewBag.Title = Model.Förnamn + " " + Model.Efternamn;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
-    <system.web>
-        <authorization>
-            <allow users="*" />
-        </authorization>
-    </system.web>
-</configuration>
-
 <h2>@Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)</h2>
-<div class="form-group">
-    @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.HiddenFor(model => model.ProfileURL)
-    <div class="col-md-10">
-        @if (Model.ProfileURL != null)
-        {
-            <img style="width: 300px; height: 250px;" src="~/Content/Images/@Model.ProfileURL" />
-        }
+<div class="card" style="width: 18rem;">
+    <img src="@Model.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)">
+    <h5 class="card-title">(@Html.DisplayFor(model => model.FödelseDatum))</h5>
+    <div class="card-body">
+        <p class="card-text"> @Html.DisplayFor(model => model.Bio)</p>
     </div>
 </div>
 
-<div>
-    <h4>Profil</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Förnamn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Förnamn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Efternamn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Efternamn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Födelsedatum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Födelsedatum)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
-
-    </dl>
-</div>
 @if (!(Model.UserID == User.Identity.GetUserId()))
 {
     @Html.ActionLink("» Lägg till vän", "RequestList", "Vän",
@@ -75,13 +22,7 @@
 
 }
 
-
-<p>
-    @Html.ActionLink("Tillbaka", "Index")
-</p>
-
-
-<h3>@Model.Förnamn's Poster </h3>
+<h3>@Model.Förnamn's logg </h3>
 
 <div class="list-group">
 
@@ -103,14 +44,53 @@
             </div>
         </form>
     </div>
+
 </div>
 
 
+
+
+@*function AddPost()
+        {
+
+        var Text = $('#Text').val();
+        var Sender = '@User.Identity.GetUserId()';
+        var Receiver = '@Model.UserID';
+        var newPost = {SenderID: Sender, ReceiverID: Receiver, Text: Text};
+            $.ajax({
+                type: 'POST',
+                url: '/api/UserPosts/',
+                data: JSON.stringify(newPost),
+                contentType:'application/json',
+                datatype: 'json',
+                success: function (data) {
+                    $('#Text').val('');
+                    location.reload();
+                }
+            })
+        };
+    </script>
+
+    <div class="container, left">
+        <h3>Test</h3>
+        <div class="form-group">
+            <label for="comment"></label>
+            <textarea class="form-control" rows="5" id="Text"></textarea>
+            <button class="btn btn-default" onclick="AddPost()"Test></button>
+        </div>
+    </div>
+    <ul class="list-group">
+        @foreach (var item in ViewBag.List)
+        {
+            <li class="list-group-item">@item[2] <b>@item[0]:</b> @item[1] </li>
+
+        }
+    </ul>*@
+
 @section scripts {
-    <script src="~/Scripts/jquery-3.3.1.js" type="application/json"></script>
-    
     <script>
-        function read() {
+
+    function read() {
         $.getJSON("/api/BloggPostApi/list?userId=@Model.UserID")
         .done(function (data)
         {
@@ -124,8 +104,7 @@
         from.text(item.FulltNamn);
         var SkickatDatum = $("<h4></h4> ");
         SkickatDatum.text(item.SkickatDatum);
-        var MeddelandeText = $("<p></p>");
-
+        var MeddelandeText = $("<p></p> ");
         MeddelandeText.text(item.MeddelandeText);
         div.append(from);
         div.append(SkickatDatum);
@@ -141,7 +120,7 @@
 
         var form = $(this);
         var data = form.serialize();
-        $.post({ url: "api/BloggPostApi/add" }, data)
+        $.post({ url: "/api/BloggPostApi/add" }, data)
 
         .then(read);
         });
