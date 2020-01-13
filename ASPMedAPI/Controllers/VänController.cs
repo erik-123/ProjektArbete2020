@@ -211,7 +211,7 @@ namespace ASPMedAPI.Controllers
 
         public int CountRequest()
         {
-            var count = -2;
+            var count = 0;
            var db = new ApplicationDbContext();
            var userID = User.Identity.GetUserId();
             var request = db.VänFörfrågningar.Where(f => f.Person2== userID).ToList();
@@ -224,7 +224,7 @@ namespace ASPMedAPI.Controllers
 
                 if (f.Vän_ID >=1)
                 {
-                   count++;
+                   count=(count+1)/2;
                 }
             }
 
