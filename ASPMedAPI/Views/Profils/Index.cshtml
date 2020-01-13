@@ -9,13 +9,12 @@
 
 <h2>Profiler på BÄRSDAGS</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>@Html.ActionLink("Search after profiles","Search", "Profils") </p>
-<p>@Html.ActionLink("Profils", "AddImage", "Profils") </p>
+<p>@Html.ActionLink("Sök","Search", "Profils") </p>
 <table class="table">
     <tr>
+        <th>
+
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Förnamn)
         </th>
@@ -24,9 +23,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Födelsedatum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileURL)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Bio)
@@ -39,7 +35,7 @@
 <tr>
     <td>
     
-        <img src="~/Content/Images/@item.ProfileURL" style="height: auto; max-height: 300px; width: 200px;" class="card-img-top" />
+        <img src="~/Content/Images/@item.ProfileURL" style="height: 75px; width: 75px;" class="card-img-top" />
     
     </td>
     <td>
@@ -52,15 +48,11 @@
         @Html.DisplayFor(modelItem => item.Födelsedatum)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.ProfileURL)
-    </td>
-    <td>
         @Html.DisplayFor(modelItem => item.Bio)
     </td>
     <td>
-        @Html.ActionLink("Redigera", "Edit", new { id = item.UserID }) |
-        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID }) |
-        @Html.ActionLink("Ta bort", "Delete", new { id = item.UserID })
+        @Html.ActionLink("Redigera profil", "Edit", new { id = item.UserID })
+        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID })
     </td>
 
 </tr>

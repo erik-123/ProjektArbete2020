@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FriendList</h2>
+<h2>Vänner</h2>
 
 @if (!(Model.Count() == 0))
 {
@@ -30,10 +30,10 @@
                     @Html.DisplayFor(modelItem => item.Efternamn)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "RemoveFriend", "Vän", new { friendID = item.UserId }, new { })
+                    @Html.ActionLink("Ta bort", "RemoveFriend", "Vän", new { friendID = item.UserId }, new { })
                 </td>
                 <td>
-                    @Html.ActionLink("View profile", "ShowProfile", "Profil", new { showID = item.UserId }, new { })
+                    @Html.ActionLink("Visa profil", "ShowProfile", "Profil", new { showID = item.UserId }, new { })
                 </td>
             </tr>
         }
@@ -43,10 +43,10 @@
 else
 {
    
-    <h4>You have no friends in your friend list.</h4>
+    <h4>Du har tyvärr inga vänner.</h4>
 }
 
 <p>
-    @Html.ActionLink("Add friends", "Search", "Profils")
+    @Html.ActionLink("Hitta vänner", "Search", "Profils")
 </p>
 

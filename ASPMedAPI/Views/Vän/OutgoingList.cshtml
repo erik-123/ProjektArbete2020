@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ASPMedAPI.Models.Classes.FriendRequestList>
 @{
-    ViewBag.Title = "OutgoingList";
+    ViewBag.Title = "Skickade vänförfrågningar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>OutgoingList</h2>
+<h2>@ViewBag.Title</h2>
 
 @if (!(Model == null))
 {
@@ -41,5 +41,5 @@
 else
 {
     
-    <h3>You have no outgoing requests.</h3>
+    <h3>Du har inga skickade vänförfrågningar som väntas på att accepteras</h3>
 }

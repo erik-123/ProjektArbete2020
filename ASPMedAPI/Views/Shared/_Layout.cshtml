@@ -21,9 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Profiler", "Index", "Profils")</li>
                     <li>@Html.ActionLink("Om oss", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Profiler", "Index", "Profils")</li>
                     @{
                         var linkText = "Vänner";
                         //Försöker hämta värdet på IncomingRequestCount ur ViewData
@@ -37,9 +37,9 @@
                         }
                         <li>@Html.ActionLink(linkText, "StartIndex", "Vän")</li>
                     }
-                    <li>@Html.ActionLink("Search", "Search", "Profils")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                
+                    <li>@Html.ActionLink("Sök", "Search", "Profils")</li>
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

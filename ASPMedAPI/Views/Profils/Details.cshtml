@@ -3,7 +3,7 @@
 @model ASPMedAPI.Models.Classes.Profil
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Förnamn + " " + Model.Efternamn;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,14 +17,14 @@
     </system.web>
 </configuration>
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)</h2>
 <div class="form-group">
     @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
     @Html.HiddenFor(model => model.ProfileURL)
     <div class="col-md-10">
         @if (Model.ProfileURL != null)
         {
-            <img style="max-width: 100%; max-height: 150px;" src="~/Content/Images/@Model.ProfileURL" />
+            <img style="width: 300px; height: 250px;" src="~/Content/Images/@Model.ProfileURL" />
         }
     </div>
 </div>

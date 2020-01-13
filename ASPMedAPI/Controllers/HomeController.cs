@@ -19,7 +19,7 @@ namespace ASPMedAPI.Controllers
             //vi hämtar ut 3 profiler 
 
 
-            var Profiler = new ApplicationDbContext().Profil.ToList().Take(3);
+            var Profiler = new ApplicationDbContext().Profil.ToList().Take(7);
             return View(Profiler);
             
             //return View();
