@@ -18,7 +18,6 @@
     <button type="button" onclick="location.href='@Url.Action("Register", "Account")'">Registrera nu</button>
 </div>
 
-
 @* Här "loopar" vi igenom listan med profiler *@
 @* Hämtar ut förnamn och efternamn, Profilbild *@
 @* Skickar en actionlink till användarens profil *@
@@ -29,7 +28,7 @@
     {
         <div class="col-md-2">
             <h5>@Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)</h5>
-            <img src="~/Content/Images/@item.ProfileURL" style="height: 125px; width: 100px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
+            <img src="~/Content/Images/@item.ProfileURL"  class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
                    
             @Html.ActionLink("» Visa profil", "Details", "Profils",  
              new { id = item.UserID },
