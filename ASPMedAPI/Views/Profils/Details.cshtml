@@ -17,11 +17,11 @@
     </system.web>
 </configuration>
 
-<h2>@Html.DisplayFor(model => model.Förnamn) @Html.DisplayFor(model => model.Efternamn)</h2>
+<h1>@Model.Förnamn @Model.Efternamn</h1>
+
+
 <div class="form-group">
-    @Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.HiddenFor(model => model.ProfileURL)
-    <div class="col-md-10">
+    <div class="col-md-4">
         @if (Model.ProfileURL != null)
         {
             <img style="width: 300px; height: 250px;" src="~/Content/Images/@Model.ProfileURL" />
@@ -29,10 +29,9 @@
     </div>
 </div>
 
+<hr />
 <div>
-    <h4>Profil</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Förnamn)
         </dt>
@@ -77,6 +76,7 @@
 
 
 <p>
+    <hr />
     @Html.ActionLink("Tillbaka", "Index")
 </p>
 
@@ -107,8 +107,9 @@
 
 
 @section scripts {
-    <script src="~/Scripts/jquery-3.3.1.js" type="application/json"></script>
-    
+    <script src="~/Scripts/jquery-3.3.1.js" type="application/json">
+    </script>
+
     <script>
         function read() {
         $.getJSON("/api/BloggPostApi/list?userId=@Model.UserID")
@@ -118,13 +119,18 @@
         contents.empty();
 
         data.forEach(function (item) {
-        var li = $("<li> </li>");
-        var div = $("<div></div>");
-        var from = $("<h4></h4> ");
+        var li = $("
+        <li> </li>");
+        var div = $("
+        <div></div>");
+        var from = $("
+        <h4></h4> ");
         from.text(item.FulltNamn);
-        var SkickatDatum = $("<h4></h4> ");
+        var SkickatDatum = $("
+        <h4></h4> ");
         SkickatDatum.text(item.SkickatDatum);
-        var MeddelandeText = $("<p></p>");
+        var MeddelandeText = $("
+        <p></p>");
 
         MeddelandeText.text(item.MeddelandeText);
         div.append(from);
@@ -149,4 +155,3 @@
         read();
     </script>
 }
-
