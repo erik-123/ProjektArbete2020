@@ -25,7 +25,28 @@ namespace ASPMedAPI.Controllers
         {
             return View(db.Profil.ToList());
         }
+        public ActionResult ProfilStartsida()
+        {
+            
+                var profileContext = new ApplicationDbContext();
+                var userID = User.Identity.GetUserId();
+                var showProfile =
+                    profileContext.Profil.FirstOrDefault(p => p.UserID == userID);
 
+                return View(new ProfilViewModel
+                {
+                    UserID = showProfile.UserID,
+                    Förnamn = showProfile.Förnamn,
+                    Efternamn = showProfile.Efternamn,
+                    FödelseDatum = showProfile.Födelsedatum,
+                    ProfileURL = showProfile.ProfileURL,
+                    Bio = showProfile.Bio,
+                  
+                });
+            
+
+
+        }
         public ActionResult ShowProfile(string showID)
         {
 

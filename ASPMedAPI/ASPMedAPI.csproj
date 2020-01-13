@@ -463,6 +463,7 @@
     <Content Include="Views\Profils\ChangeProfileImage.cshtml" />
     <Content Include="Views\Profils\AddImage.cshtml" />
     <Content Include="Views\Manage\_ManagePartialView.cshtml" />
+    <Content Include="Views\Profils\ProfilStartsida.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
