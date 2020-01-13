@@ -91,7 +91,7 @@
     <script>
 
     function read() {
-        $.getJSON("/api/bloggpost/list?userId=@Model.UserID")
+        $.getJSON("/api/BloggPostApi/list?userId=@Model.UserID")
         .done(function (data)
         {
         var contents = $("#blogpostcontent");
@@ -120,7 +120,7 @@
 
         var form = $(this);
         var data = form.serialize();
-        $.post({ url: "/api/bloggpost/add" }, data)
+        $.post({ url: "/api/BloggPostApi/add" }, data)
 
         .then(read);
         });

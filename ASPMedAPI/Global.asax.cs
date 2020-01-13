@@ -16,15 +16,20 @@ namespace ASPMedAPI
     {
         protected void Application_Start()
         {
-            Database.SetInitializer <ApplicationDbContext> (new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+           
             AreaRegistration.RegisterAllAreas();
+           // WebApiConfig.Register(GlobalConfiguration.Configuration); 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Database.SetInitializer <ApplicationDbContext> (new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            
+           
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            
         }
     }
 }

@@ -11,8 +11,8 @@ using System.Data.Entity.Infrastructure;
 
 namespace ASPMedAPI.Controllers
 {
-    [RoutePrefix("api/bloggpost")]
-    public class BloggPostApiController : ApiController
+    [RoutePrefix("api/BloggPostApi")]
+    public class BloggPostApiController : ApiController     
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -50,34 +50,34 @@ namespace ASPMedAPI.Controllers
             return list;
         }
 
-        public void AddPost([FromBody] BloggPostViewModel model)
-        {
+        //public void AddPost([FromBody] BloggPostViewModel model)
+        //{
 
-            if (model.MeddelandeText != "")
-            {
-                UserPost newPost = new UserPost();
-                var userTo = db.Users.Single(x => x.Id == model.ReceiverID);
-                newPost.Receiver = userTo;
+        //    if (model.MeddelandeText != "")
+        //    {
+        //        UserPost newPost = new UserPost();
+        //        var userTo = db.Users.Single(x => x.Id == model.ReceiverID);
+        //        newPost.Receiver = userTo;
 
-                var userFrom = db.Users.Single(x => x.Id == model.SenderID);
-                newPost.Sender = userFrom;
+        //        var userFrom = db.Users.Single(x => x.Id == model.SenderID);
+        //        newPost.Sender = userFrom;
 
-                newPost.Message = model.MeddelandeText;
+        //        newPost.Message = model.MeddelandeText;
 
-                newPost.Date = DateTime.Now;
+        //        newPost.Date = DateTime.Now;
 
-                db.Posts.Add(newPost);
-                db.SaveChanges();
+        //        db.Posts.Add(newPost);
+        //        db.SaveChanges();
 
-            }
+        //    }
 
-        }
+        //}
 
-        public List<UserPost> GetPosts(string id)
-        {
-            var Posts = db.Posts.Where(x => x.Receiver.Id == id).ToList();
-            return Posts;
-        }
+        //public List<UserPost> GetPosts(string id)
+        //{
+        //    var Posts = db.Posts.Where(x => x.Receiver.Id == id).ToList();
+        //    return Posts;
+        //}
 
     }
 }
