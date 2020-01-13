@@ -1,15 +1,145 @@
 ﻿@model ASPMedAPI.Models.ProfilViewModel
-
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "ProfilStartsida";
 }
 
-<h2>Welcome @Model.Förnamn</h2>
-<ul class="nav">
-    <li class="nav-item">
-        @Html.ActionLink("View my profile", "ShowProfile", "Profils", new { showID = Model.UserID }, null)
-    </li>
-    <li class="nav-item">
-        @Html.ActionLink("Edit", "Edit", "Profils", new { id = Model.UserID }, null)
-    </li>
-</ul>
+<h1>@Model.Förnamn @Model.Efternamn</h1>
+
+
+<div class="form-group">
+    @*@Html.LabelFor(model => model.ProfileURL, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.ProfileURL)*@
+    <div class="col-md-4">
+        @if (Model.ProfileURL != null)
+        {
+            <img style="width: 300px; height: 250px;" src="~/Content/Images/@Model.ProfileURL" />
+        }
+    </div>
+</div>
+        
+  
+
+<hr />
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Förnamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Förnamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Efternamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Efternamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FödelseDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FödelseDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bio)
+        </dd>
+
+    </dl>
+</div>
+@if (!(Model.UserID == User.Identity.GetUserId()))
+{
+    @Html.ActionLink("» Lägg till vän", "RequestList", "Vän",
+                new { friendID = Model.UserID },
+                new { @class = "btn btn-primary" })
+
+}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", "Profils", new { id = Model.UserID }, null)
+    <hr />
+    @Html.ActionLink("Tillbaka", "Index")
+</p>
+
+
+<h3>@Model.Förnamn's Poster </h3>
+
+<div class="list-group">
+
+    <div>
+        <ul id="bloggpostscontents">
+            <li>
+                @*<label>Loading...</label>*@
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <form id="addbloggpost">
+            <input type="text" id="MeddelandeText" name="MeddelandeText" />
+            <input type="text" id="Mottagare" name="Mottagare" value="@Model.UserID" hidden="hidden" />
+            <input type="text" id="Avsändare" name="Avsändare" value="@User.Identity.GetUserId()" hidden="hidden" />
+            <div>
+                <button class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.3.1.js" type="application/json">
+    </script>
+
+    <script>
+        function read() {
+        $.getJSON("/api/BloggPostApi/list?userId=@Model.UserID")
+        .done(function (data)
+        {
+        var contents = $("#blogpostcontent");
+        contents.empty();
+
+        data.forEach(function (item) {
+        var li = $("<li> </li>");
+        var div = $("<div></div>");
+        var from = $("<h4></h4> ");
+        from.text(item.FulltNamn);
+        var SkickatDatum = $("<h4></h4> ");
+        SkickatDatum.text(item.SkickatDatum);
+        var MeddelandeText = $("<p></p>");
+
+        MeddelandeText.text(item.MeddelandeText);
+        div.append(from);
+        div.append(SkickatDatum);
+        div.append(MeddelandeText);
+        li.append(div);
+        $("#blogpostcontent").append(li);
+        });
+        });
+        };
+
+        $('#addbloggpost').submit(function (ex, e2) {
+        ex.preventDefault();
+
+        var form = $(this);
+        var data = form.serialize();
+        $.post({ url: "api/BloggPostApi/add" }, data)
+
+        .then(read);
+        });
+
+        read();
+    </script>
+}
+
