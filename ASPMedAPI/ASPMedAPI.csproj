@@ -376,6 +376,10 @@
     <Compile Include="Migrations\202001111006452_FörsökerFixAprofil.Designer.cs">
       <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001131830447_aktiv.cs" />
+    <Compile Include="Migrations\202001131830447_aktiv.Designer.cs">
+      <DependentUpon>202001131830447_aktiv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\BloggPost.cs" />
@@ -466,6 +470,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Views\Request\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -510,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001111006452_FörsökerFixAprofil.resx">
       <DependentUpon>202001111006452_FörsökerFixAprofil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001131830447_aktiv.resx">
+      <DependentUpon>202001131830447_aktiv.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

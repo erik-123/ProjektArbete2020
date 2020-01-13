@@ -209,6 +209,28 @@ namespace ASPMedAPI.Controllers
             return View(listToSend);
         }
 
+        public int CountRequest()
+        {
+            var count = -2;
+           var db = new ApplicationDbContext();
+           var userID = User.Identity.GetUserId();
+            var request = db.VänFörfrågningar.Where(f => f.Person2== userID).ToList();
+            var profiles = db.Profil.ToList();
+       
+            count = request.Count();
+
+            foreach (var f in request)
+            {
+
+                if (f.Vän_ID >=1)
+                {
+                   count++;
+                }
+            }
+
+            return count;
+        }
+
         public ActionResult RemoveFriend(string friendID)
         {
             var db = new ApplicationDbContext();
