@@ -53,6 +53,19 @@ namespace ASPMedAPI.Controllers
             }
         }
 
+        public ActionResult VisaProfil()
+        {
+            var användare = User.Identity.GetUserId();
+
+            if(användare == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var db = new ApplicationDbContext();
+
+            return View();
+        }
 
         // GET: Profils/Details/5
         public ActionResult Details(string id)
@@ -82,7 +95,7 @@ namespace ASPMedAPI.Controllers
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")]HttpPostedFileBase file, Profil profil)
         //{
-            public ActionResult Create([Bind(Include = "UserID,Förnamn,Efternamn,Födelsedatum,ProfileURL,Bio")] Profil profil)
+            public ActionResult Create([Bind(Include = "UserID, Förnamn, Efternamn, Födelsedatum, ProfileURL, sBio")] Profil profil)
             {      
             // Hitta ID för nuvarande användare:
         var userId = User.Identity.GetUserId();

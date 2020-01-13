@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<ASPMedAPI.Models.Classes.Profil>
 
 
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +8,8 @@
 
 <h2>Profiler på BÄRSDAGS</h2>
 
-<p>@Html.ActionLink("Sök","Search", "Profils") </p>
+<h3>@Html.ActionLink("Min profil", "Details", "Profils")</h3>
+<p>@Html.ActionLink("Sök", "Search", "Profils") </p>
 <table class="table">
     <tr>
         <th>
@@ -32,30 +32,30 @@
     @foreach (var item in Model)
     {
 
-<tr>
-    <td>
-    
-        <img src="~/Content/Images/@item.ProfileURL" style="height: 75px; width: 75px;" class="card-img-top" />
-    
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Förnamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Efternamn)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Födelsedatum)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Bio)
-    </td>
-    <td>
-        @Html.ActionLink("Redigera profil", "Edit", new { id = item.UserID })
-        @Html.ActionLink("Visa profil", "Details", new { id = item.UserID })
-    </td>
+        <tr>
+            <td>
 
-</tr>
+                <img src="~/Content/Images/@item.ProfileURL" style="height: 75px; width: 75px;" class="card-img-top" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Förnamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Efternamn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Födelsedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.ActionLink("Redigera profil", "Edit", new { id = item.UserID })
+                @Html.ActionLink("Visa profil", "Details", new { id = item.UserID })
+            </td>
+
+        </tr>
     }
 
 </table>

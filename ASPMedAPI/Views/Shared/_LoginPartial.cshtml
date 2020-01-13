@@ -7,10 +7,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Inställningar", "Index", "Manage")
+            @Html.ActionLink("Min profil", "Details", "Profils")
         </li>
         <li>
-            @Html.ActionLink("Inloggad som " + User.Identity.GetUserName(), "Details", "Profils", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Inloggad som " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Logga ut</a></li>
     </ul>

@@ -31,8 +31,8 @@
             <h5>@Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)</h5>
             <img src="~/Content/Images/@item.ProfileURL" style="height: 125px; width: 100px;" class="card-img-top" alt="Profile picture of @Html.DisplayFor(modelItem => item.Förnamn) @Html.DisplayFor(modelItem => item.Efternamn)">
                         <p>@Html.DisplayFor(modelItem => item.Bio)</p>
-            @Html.ActionLink("» Visa profil", "ShowProfile", "Profils",  
-             new { showID = item.UserID },
+            @Html.ActionLink("» Visa profil", "Details", "Profils",  
+             new { id = item.UserID },
              new { @class = "btn btn-primary" })
         </div>
     }
